@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" ng-app="mulheres">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS and jQuery Meio Mask</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="jquery.meio.mask.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="MulheresCtrl">
+<div class="container">
+    <div class="page-header">
+        <h1>Mulheres <span class="label label-success">uhu</span></h1>
+    </div>
+    <p class="lead">Exemplo AngularJS and jQuery Meio Mask</p>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <p>Selecione uma <span class="label label-success">mulher</span> abaixo para editar.</p>
+
+            <div class="list-group">
+                <a ng-repeat="m in mulheres"
+                   class="list-group-item"
+                   ng-class="{'active': isActive(m)}"
+                   ng-click="edit(m)">
+                    {{m.nome}}, {{m.telefone}}, R$ {{m.valor|decimal}}, {{m.nascimento|date}}
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <form role="form" ng-submit="save()">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="nome" class="form-control" id="nome" ng-model="mulher.nome">
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="text" class="form-control" id="telefone" ng-model="mulher.telefone" mask="telefone">
+                </div>
+                <div class="form-group">
+                    <label for="valor">Valor Hora</label>
+                    <input type="text" class="form-control" id="valor" ng-model="mulher.valor" mask="decimal">
+                </div>
+                <div class="form-group">
+                    <label for="nascimento">Nascimento</label>
+                    <input type="text" class="form-control" id="nascimento" ng-model="mulher.nascimento"
+                           mask="date">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
